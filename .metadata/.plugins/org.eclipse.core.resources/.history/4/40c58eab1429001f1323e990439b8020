@@ -1,0 +1,43 @@
+package projects.service;
+
+import projects.dao.ProjectsDao;
+import projects.exception.DbException;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
+
+public class ProjectService {
+	private static final String SCHEMA_FILE = "project_schema.sql";
+	
+	private ProjectsDao projecstDao = new ProjectsDao();
+	
+	public void createAndPopulateTables() {
+		loadFromFile(SCHEMA_FILE);
+		
+	}
+
+	private void loadFromFile(String fileName) {
+		String content = readFileContent(fileName);
+		List<String> sqlStatements = convertContentToSqlStatements(content);
+		
+	}
+
+	private String convertContentToSqlStatements(String fileName) {
+		try {
+			Path path = Paths.get(getClass().getClassLoader().getResource(fileName).toURI());
+			return Files.readString(path);
+		} catch (Exception e) {
+			throw new DbException(e);
+		}
+		
+	}
+
+	private String readFileContent(String fileName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}

@@ -1,0 +1,13 @@
+package projects.dao;
+
+import provided.util.DaoBase;
+import java.util.List;
+
+public class ProjectsDao extends DaoBase {
+
+	public void executeBatch(List<String> sqlStatements) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
